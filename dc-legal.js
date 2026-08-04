@@ -46,7 +46,8 @@
     '#dc-cookie .ok{background:#B8933D;color:#2C221C}#dc-cookie .ok:hover{background:#C9A24B}' +
     '#dc-cookie .no{background:transparent;color:#F6F1E9;border:1px solid rgba(246,241,233,.5)}' +
     '#dc-legal-bar{background:#2C221C;color:#C9BEB0;text-align:center;padding:20px 16px;' +
-    'font-family:Inter,-apple-system,sans-serif;font-size:12.5px;line-height:1.8}' +
+    'font-family:Inter,-apple-system,sans-serif;font-size:12.5px;line-height:1.8;' +
+    'width:100%;box-sizing:border-box;flex:0 0 100%}' +
     '#dc-legal-bar a{color:#C9A24B;text-decoration:none;margin:0 7px}#dc-legal-bar a:hover{text-decoration:underline}' +
     '#dc-legal-bar .c{margin-top:10px;color:#9a8d7f}';
   var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
@@ -62,6 +63,12 @@
     '<a href="' + BASE + '/accessibility">' + T.access + '</a></nav>' +
     '<div class="c">© 2026 Dream Clean by Dalila Cerezo LLC · Dream Clean by DC · Orlando, Central Florida · Licensed · Insured</div>';
   document.body.appendChild(bar);
+  // If the page body is a flex/grid container, make sure the footer drops to a full-width row below the content.
+  try {
+    var disp = getComputedStyle(document.body).display;
+    if (disp.indexOf('flex') !== -1) { document.body.style.flexWrap = 'wrap'; }
+    else if (disp.indexOf('grid') !== -1) { bar.style.gridColumn = '1 / -1'; }
+  } catch (e) {}
 
   /* ---------- cookie consent ---------- */
   var KEY = "dc_cookie_consent";
