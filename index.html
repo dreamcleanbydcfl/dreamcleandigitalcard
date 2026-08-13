@@ -345,10 +345,10 @@
         <!-- STEP 3 — preferred date & time -->
         <div class="step" id="step3">
           <div class="est-h" style="font-size:18px;">When works best?</div>
-          <div class="est-sub">Pick a preferred date and time — we'll confirm availability when we follow up.</div>
+          <div class="est-sub">If you already know when you need us, tell us here. If not, skip it and we'll coordinate when we follow up.</div>
 
           <div class="field-row">
-            <label>Preferred date</label>
+            <label>Preferred date (optional)</label>
             <input id="prefDate" type="date">
             <div class="field-err" id="errDate">Please pick a preferred date.</div>
           </div>
@@ -728,7 +728,7 @@
   $("back4").addEventListener("click", ()=> goToStep(3));
   $("toStep4").addEventListener("click", ()=>{
     preferredDate = $("prefDate").value;
-    if(!preferredDate){ $("errDate").classList.add("show"); return; }
+    // La fecha es opcional: si la ponen nos sirve, pero no frena el estimado.
     $("errDate").classList.remove("show");
     goToStep(4);
   });
@@ -822,7 +822,7 @@
     if(!emailRe.test(email)){ setErr("lEmail","errEmail",true); ok=false; } else setErr("lEmail","errEmail",false);
     if(!validPhone(phone)){ setErr("lPhone","errPhone",true); ok=false; } else setErr("lPhone","errPhone",false);
     if(!address){ setErr("lAddress","errAddress",true); ok=false; } else setErr("lAddress","errAddress",false);
-    if(!smsConsent){ $("errSms").classList.add("show"); ok=false; } else { $("errSms").classList.remove("show"); }
+    $("errSms").classList.remove("show"); // el consentimiento se guarda, pero no bloquea
     if(!ok) return;
 
     calc();
