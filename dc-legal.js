@@ -100,3 +100,18 @@
   if (c === "all") window.dcLoadTracking();
   else if (c !== "essential") show();
 })();
+
+
+/* ---------------------------------------------------------------
+   Calculadora de estimados: autocompletado de direcciones (Google
+   Places) + relleno automatico de pies cuadrados.
+   La logica vive en el sitio principal para no duplicarla en cada
+   repo. Si el archivo no carga, la calculadora sigue funcionando
+   igual que siempre, a mano.
+   --------------------------------------------------------------- */
+(function () {
+  var s = document.createElement("script");
+  s.src = "https://www.dreamcleanbydc.com/dc-calc.js";
+  s.defer = true;
+  document.head.appendChild(s);
+})();
