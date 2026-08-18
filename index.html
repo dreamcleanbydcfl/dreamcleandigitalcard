@@ -293,7 +293,7 @@
             <div class="addon">
               <div class="a-l" data-addon="window">
                 <span class="chk" id="chk-window"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
-                <div><div class="a-t">Interior Windows</div></div>
+                <div><div class="a-t">Interior Windows (quoted on site)</div></div>
               </div>
             </div>
 
@@ -307,7 +307,7 @@
             <div class="addon">
               <div class="a-l" data-addon="baseboardsWalls">
                 <span class="chk" id="chk-baseboardsWalls"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
-                <div><div class="a-t">Baseboards &amp; Walls</div></div>
+                <div><div class="a-t">Blinds — detailing (quoted on site)</div></div>
               </div>
             </div>
           </div>
@@ -469,11 +469,11 @@
      RATES — EDIT HERE  (USD per sq ft, applied to total sq ft)
      ========================================================= */
   const RATES = {
-    standard: { low: 0.16, high: 0.19, min: 120, name: "standard clean" },
-    deep:     { low: 0.24, high: 0.26, min: 200, name: "deep clean" },
-    move:     { low: 0.27, high: 0.33, min: 240, name: "move-in / move-out" }
+    standard: { low: 0.171, high: 0.19, min: 175, name: "standard clean" },
+    deep:     { low: 0.252, high: 0.28, min: 275, name: "deep clean" },
+    move:     { low: 0.288, high: 0.32, min: 325, name: "move-in / move-out" }
   };
-  const DISCOUNT   = { once:0, weekly:0.15, biweekly:0.10, monthly:0.05 };
+  const DISCOUNT   = { once:0, weekly:0.20, biweekly:0.10, monthly:0.05 };
   const FREQ_LABEL = { once:"One-time", weekly:"Weekly", biweekly:"Biweekly", monthly:"Monthly" };
   const FREQ_BY_TYPE = {
     standard: ["once","weekly","biweekly","monthly"],
@@ -483,7 +483,7 @@
   // Extra cost per bathroom beyond the first (bathrooms add cleaning time)
   const BATH_EXTRA = { low: 8, high: 12 };
   // Add-on prices (not shown to the client — only used to compute the final range)
-  const ADDON_PRICE = { oven: 40, fridge: 35, window: 60, cabinets: 20, baseboardsWalls: 65, pressure: 200, paint: 2 };
+  const ADDON_PRICE = { oven: 50, fridge: 45, window: 0, cabinets: 75, baseboardsWalls: 0, pressure: 200, paint: 2 };
   /* ========================================================= */
 
   let type = "standard", freq = "once", bedrooms = "2", bathrooms = "2", currentStep = 1, smsConsent = false;
@@ -515,9 +515,9 @@
       if(addons.pets)            list.push("Pets in home");
       if(addons.oven)            list.push("Oven (+$" + ADDON_PRICE.oven + ")");
       if(addons.fridge)          list.push("Refrigerator (+$" + ADDON_PRICE.fridge + ")");
-      if(addons.window)          list.push("Interior Windows (+$" + ADDON_PRICE.window + ")");
+      if(addons.window)          list.push("Interior windows - quoted on site");
       if(addons.cabinets)        list.push("Interior Cabinets (+$" + ADDON_PRICE.cabinets + ")");
-      if(addons.baseboardsWalls) list.push("Baseboards & Walls (+$" + ADDON_PRICE.baseboardsWalls + ")");
+      if(addons.baseboardsWalls) list.push("Blinds detailing - quoted on site");
     }
     if(type === "move"){
       if(addons.pressure) list.push("Pressure Washing (starting at $" + ADDON_PRICE.pressure + ")");
